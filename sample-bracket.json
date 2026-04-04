@@ -1,0 +1,22 @@
+[
+  {
+    "division": "World Class Cadets - Female Under 33 (Over 29 kg & not exceeding 33 kg) Black Belt",
+    "competitors": [
+      { "id": "1", "name": "Alice Kim", "school": "Tigers ATA", "photoUrl": "" },
+      { "id": "2", "name": "Bob Lee", "school": "Dragon TKD", "photoUrl": "" },
+      { "id": "3", "name": "Carol Park", "school": "Elite TKD", "photoUrl": "" }
+    ]
+  },
+  {
+    "division": "World Class Seniors - Male Under 68 (Over 63 kg & not exceeding 68 kg) Black Belt",
+    "competitors": [
+      { "id": "1", "name": "Dan Nguyen", "school": "AAU Club", "photoUrl": "" },
+      { "id": "2", "name": "Eve Santos", "school": "Tigers ATA", "photoUrl": "" },
+      { "id": "3", "name": "Frank Cho", "school": "Phoenix MA", "photoUrl": "" },
+      { "id": "4", "name": "Grace Liu", "school": "Elite TKD", "photoUrl": "" },
+      { "id": "5", "name": "Henry Wang", "school": "Dragon TKD", "photoUrl": "" },
+      { "id": "6", "name": "Iris Patel", "school": "AAU Club", "photoUrl": "" },
+      { "id": "7", "name": "James Oh", "school": "Phoenix MA", "photoUrl": "" }
+    ]
+  }
+]

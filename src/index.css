@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: #1a1a2e;
+  color: #e0e0e0;
+  min-height: 100vh;
+}
+
+/* ── Bracket connector lines ── */
+.connector-left .line-top,
+.connector-left .line-bottom {
+  border-right: 2px solid #64748b;
+}
+.connector-left .line-top {
+  border-bottom: 2px solid #64748b;
+}
+.connector-left .line-bottom {
+  border-top: 2px solid #64748b;
+}
+.connector-left .line-mid {
+  border-right: 2px solid #64748b;
+}
+
+.connector-right .line-top,
+.connector-right .line-bottom {
+  border-left: 2px solid #64748b;
+}
+.connector-right .line-top {
+  border-bottom: 2px solid #64748b;
+}
+.connector-right .line-bottom {
+  border-top: 2px solid #64748b;
+}
+.connector-right .line-mid {
+  border-left: 2px solid #64748b;
+}
+
+/* ── Drag styles ── */
+.dragging {
+  opacity: 0.5;
+  z-index: 50;
+}
+
+.drop-target {
+  outline: 2px dashed #facc15;
+  outline-offset: 2px;
+}
+
+/* ── Print styles ── */
+@media print {
+  @page {
+    size: landscape;
+    margin: 0.4in;
+  }
+
+  body {
+    background: white !important;
+    color: black !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .bracket-container {
+    background: white !important;
+    width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  .match-slot {
+    border-color: #333 !important;
+    background: white !important;
+    color: black !important;
+  }
+
+  .match-slot-bye {
+    background: #f0f0f0 !important;
+    color: #999 !important;
+  }
+
+  .connector-left .line-top,
+  .connector-left .line-bottom,
+  .connector-left .line-mid,
+  .connector-right .line-top,
+  .connector-right .line-bottom,
+  .connector-right .line-mid {
+    border-color: #333 !important;
+  }
+
+  .division-title {
+    color: black !important;
+  }
+
+  .bg-overlay {
+    display: none !important;
+  }
+}
