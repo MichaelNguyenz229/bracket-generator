@@ -10,7 +10,9 @@ export default function App() {
   const [bracket, setBracket] = useState<BracketState | null>(null);
   const [backgroundUrl, setBackgroundUrl] = useState<string | null>(null);
   const [logoUrl, setLogoUrl] = useState<string | null>(null);
-  const [tournamentTitle, setTournamentTitle] = useState('2025 AAU NATIONAL QUALIFIER');
+  const [bgScale, setBgScale] = useState(50);
+  const [bgOpacity, setBgOpacity] = useState(0.1);
+  const [tournamentTitle, setTournamentTitle] = useState('2026 AAU NATIONAL QUALIFIER');
 
   function handleLoad(divs: DivisionData[]) {
     setDivisions(divs);
@@ -40,6 +42,11 @@ export default function App() {
         tournamentTitle={tournamentTitle}
         onTitleChange={setTournamentTitle}
         hasBracket={!!bracket}
+        hasBackground={!!backgroundUrl}
+        bgScale={bgScale}
+        onBgScaleChange={setBgScale}
+        bgOpacity={bgOpacity}
+        onBgOpacityChange={setBgOpacity}
       />
 
       {divisions.length > 1 && (
@@ -67,6 +74,8 @@ export default function App() {
             backgroundUrl={backgroundUrl}
             logoUrl={logoUrl}
             tournamentTitle={tournamentTitle}
+            bgScale={bgScale}
+            bgOpacity={bgOpacity}
           />
         </div>
       ) : (

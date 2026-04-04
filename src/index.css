@@ -132,8 +132,4 @@ body {
     border: none !important;
     zoom: var(--print-scale, 1);
   }
-
-  .bg-overlay {
-    opacity: 0.15 !important;
-  }
 }

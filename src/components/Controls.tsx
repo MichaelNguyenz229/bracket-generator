@@ -9,11 +9,17 @@ interface Props {
   tournamentTitle: string;
   onTitleChange: (title: string) => void;
   hasBracket: boolean;
+  hasBackground: boolean;
+  bgScale: number;
+  onBgScaleChange: (scale: number) => void;
+  bgOpacity: number;
+  onBgOpacityChange: (opacity: number) => void;
 }
 
 export default function Controls({
   onLoad, onShuffle, onBackgroundChange, onLogoChange,
   tournamentTitle, onTitleChange, hasBracket,
+  hasBackground, bgScale, onBgScaleChange, bgOpacity, onBgOpacityChange
 }: Props) {
   const fileRef = useRef<HTMLInputElement>(null);
   const bgRef = useRef<HTMLInputElement>(null);
@@ -100,6 +106,19 @@ export default function Controls({
       >
         Background
       </button>
+
+      {hasBackground && (
+        <div className="flex items-center gap-3 bg-slate-800 px-3 py-1.5 rounded border border-slate-700">
+          <label className="text-slate-300 text-xs flex items-center gap-2">
+            Size:
+            <input type="range" min="10" max="150" value={bgScale} onChange={(e) => onBgScaleChange(Number(e.target.value))} className="w-20 accent-slate-400" />
+          </label>
+          <label className="text-slate-300 text-xs flex items-center gap-2">
+            Fade:
+            <input type="range" min="0.02" max="1" step="0.02" value={bgOpacity} onChange={(e) => onBgOpacityChange(Number(e.target.value))} className="w-20 accent-slate-400" />
+          </label>
+        </div>
+      )}
 
       <button
         onClick={() => { onBackgroundChange(null); onLogoChange(null); }}

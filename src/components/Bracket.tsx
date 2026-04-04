@@ -10,13 +10,15 @@ interface Props {
   backgroundUrl: string | null;
   logoUrl: string | null;
   tournamentTitle: string;
+  bgScale: number;
+  bgOpacity: number;
 }
 
 // Landscape US Letter printable area at 96 DPI (11" x 8.5" minus 0.3" margins)
 const PAGE_W = 10.4 * 96;  // ~998px
 const PAGE_H = 7.9 * 96;   // ~758px
 
-export default function Bracket({ bracket, onBracketChange, backgroundUrl, logoUrl, tournamentTitle }: Props) {
+export default function Bracket({ bracket, onBracketChange, backgroundUrl, logoUrl, tournamentTitle, bgScale, bgOpacity }: Props) {
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 5 } })
   );
@@ -57,8 +59,12 @@ export default function Bracket({ bracket, onBracketChange, backgroundUrl, logoU
         {/* Background image overlay */}
         {backgroundUrl && (
           <div
-            className="bg-overlay absolute inset-0 bg-cover bg-center opacity-10 pointer-events-none"
-            style={{ backgroundImage: `url(${backgroundUrl})` }}
+            className="bg-overlay absolute inset-0 bg-no-repeat bg-center pointer-events-none"
+            style={{ 
+              backgroundImage: `url(${backgroundUrl})`,
+              backgroundSize: `${bgScale}%`,
+              opacity: bgOpacity,
+            }}
           />
         )}
 
@@ -92,7 +98,7 @@ export default function Bracket({ bracket, onBracketChange, backgroundUrl, logoU
 
               {/* 1ST PLACE box — aligned with final output line */}
               <div
-                className="flex-shrink-0 pl-1"
+                className="flex-shrink-0"
                 style={{ marginTop: layout.finalMidY - 30 }}
               >
                 <div
