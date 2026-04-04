@@ -124,10 +124,13 @@ body {
 
   .bracket-page {
     width: 100% !important;
-    min-height: 100vh !important;
-    overflow: visible !important;
+    min-height: var(--print-h, 100vh) !important;
+    height: var(--print-h, 100vh) !important;
+    max-height: var(--print-h, 100vh) !important;
+    overflow: hidden !important;
     box-shadow: none !important;
     border: none !important;
+    zoom: var(--print-scale, 1);
   }
 
   .bg-overlay {

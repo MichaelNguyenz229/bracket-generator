@@ -60,7 +60,7 @@ export default function App() {
       )}
 
       {bracket ? (
-        <div className="flex-1 overflow-auto p-4">
+        <div className="flex-1 overflow-auto p-4 print:p-0 print:overflow-visible">
           <Bracket
             bracket={bracket}
             onBracketChange={setBracket}

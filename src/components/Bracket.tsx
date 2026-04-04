@@ -51,6 +51,7 @@ export default function Bracket({ bracket, onBracketChange, backgroundUrl, logoU
           minHeight: '100vh',
           // CSS custom property for print scaling
           '--print-scale': printScale,
+          '--print-h': `${PAGE_H / printScale}px`,
         } as React.CSSProperties}
       >
         {/* Background image overlay */}

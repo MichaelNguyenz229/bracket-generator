@@ -96,8 +96,26 @@ function computeLayout(rounds: Rounds) {
       // Output line from midpoint to next round
       if (r < rounds.length - 1) {
         const midY = (topLineY + bottomLineY) / 2;
-        const nextRoundX = (r + 1) * (SLOT_W + ROUND_GAP) + LABEL_W;
-        lines.push({ x1: connectorX, y1: midY, x2: nextRoundX, y2: midY });
+        
+        const nextM = Math.floor(m / 2);
+        const nextCenter = matchCenters[r + 1][nextM];
+        const nextMatchTop = nextCenter - MATCH_H / 2;
+        const targetY = (m % 2 === 0)
+          ? nextMatchTop + SLOT_H
+          : nextMatchTop + SLOT_H + MATCH_GAP + SLOT_H;
+
+        const nextRoundStartX = (r + 1) * (SLOT_W + ROUND_GAP);
+        const verticalX = connectorX + 10;
+        const nextLineStartX = nextRoundStartX + LABEL_W;
+
+        // Horizontal from current bracket ] to vertical step
+        lines.push({ x1: connectorX, y1: midY, x2: verticalX, y2: midY });
+        
+        // Vertical step connecting to target slot's Y level
+        lines.push({ x1: verticalX, y1: midY, x2: verticalX, y2: targetY });
+
+        // Horizontal from vertical step to next slot's underline
+        lines.push({ x1: verticalX, y1: targetY, x2: nextLineStartX, y2: targetY });
       }
     }
   }
