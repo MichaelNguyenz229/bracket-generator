@@ -1,4 +1,4 @@
-import type { Competitor, BracketSlot, SideRounds, BracketState } from './types';
+import type { Competitor, BracketSlot, Rounds, BracketState } from './types';
 
 /** Smallest power of 2 >= n (minimum 2) */
 export function nextPowerOf2(n: number): number {
@@ -23,23 +23,42 @@ function makeSlot(competitor: Competitor | null): BracketSlot {
 }
 
 /**
- * Build the rounds structure for one side.
- * Only round 0 has competitors; later rounds are empty (TBD) slots.
+ * Arrange competitors into bracket slots for round 0.
+ * Full matches (2 competitors) come first, bye matches (competitor + null) come last.
  */
-function buildSideRounds(firstRoundSlots: (Competitor | null)[]): SideRounds {
-  const numRounds = Math.log2(firstRoundSlots.length);
-  const rounds: SideRounds = [];
+function arrangeFirstRound(competitors: Competitor[], bracketSize: number): BracketSlot[][] {
+  const shuffled = shuffle(competitors);
+  const numMatches = bracketSize / 2;
+  const byeCount = bracketSize - competitors.length;
+  const fullMatches = numMatches - byeCount;
+  const matches: BracketSlot[][] = [];
+
+  let ci = 0;
+  for (let m = 0; m < numMatches; m++) {
+    if (m < fullMatches) {
+      matches.push([makeSlot(shuffled[ci++]), makeSlot(shuffled[ci++])]);
+    } else {
+      matches.push([makeSlot(shuffled[ci++]), makeSlot(null)]); // BYE
+    }
+  }
+
+  return matches;
+}
+
+/** Generate a full bracket state from input data */
+export function generateBracket(division: string, competitors: Competitor[]): BracketState {
+  const bracketSize = nextPowerOf2(Math.max(competitors.length, 2));
+  slotCounter = 0;
+
+  const rounds: Rounds = [];
+  const numRounds = Math.log2(bracketSize);
 
   // Round 0: initial matchups
-  const r0: BracketSlot[][] = [];
-  for (let i = 0; i < firstRoundSlots.length; i += 2) {
-    r0.push([makeSlot(firstRoundSlots[i]), makeSlot(firstRoundSlots[i + 1])]);
-  }
-  rounds.push(r0);
+  rounds.push(arrangeFirstRound(competitors, bracketSize));
 
   // Subsequent rounds: empty TBD slots
   for (let r = 1; r < numRounds; r++) {
-    const numMatches = firstRoundSlots.length / Math.pow(2, r + 1);
+    const numMatches = bracketSize / Math.pow(2, r + 1);
     const round: BracketSlot[][] = [];
     for (let m = 0; m < numMatches; m++) {
       round.push([makeSlot(null), makeSlot(null)]);
@@ -47,87 +66,15 @@ function buildSideRounds(firstRoundSlots: (Competitor | null)[]): SideRounds {
     rounds.push(round);
   }
 
-  return rounds;
-}
-
-/**
- * Arrange competitors and byes into left/right side slot arrays.
- * Byes are spread evenly across both sides and always placed in
- * the second slot of a match so the competitor gets an auto-advance.
- */
-function distributeCompetitors(
-  competitors: Competitor[],
-  bracketSize: number
-): { leftSlots: (Competitor | null)[]; rightSlots: (Competitor | null)[] } {
-  const half = bracketSize / 2;
-  const shuffled = shuffle(competitors);
-  const totalByes = bracketSize - competitors.length;
-
-  // Distribute byes evenly: ceil to left, floor to right
-  const leftByes = Math.ceil(totalByes / 2);
-  const rightByes = Math.floor(totalByes / 2);
-
-  const leftCompCount = half - leftByes;
-  const rightCompCount = half - rightByes;
-
-  const leftComps = shuffled.slice(0, leftCompCount);
-  const rightComps = shuffled.slice(leftCompCount, leftCompCount + rightCompCount);
-
-  const leftSlots = arrangeSide(leftComps, half);
-  const rightSlots = arrangeSide(rightComps, half);
-
-  return { leftSlots, rightSlots };
-}
-
-/**
- * Arrange competitors into `sideSize` slots.
- * Full matches (2 competitors) come first,
- * bye matches (competitor + null) come last.
- */
-function arrangeSide(comps: Competitor[], sideSize: number): (Competitor | null)[] {
-  const numMatches = sideSize / 2;
-  const byeCount = sideSize - comps.length;
-  const fullMatches = numMatches - byeCount;
-  const slots: (Competitor | null)[] = [];
-  let ci = 0;
-
-  for (let m = 0; m < numMatches; m++) {
-    if (m < fullMatches) {
-      slots.push(comps[ci++]);
-      slots.push(comps[ci++]);
-    } else {
-      slots.push(comps[ci++]);
-      slots.push(null); // BYE
-    }
-  }
-
-  return slots;
-}
-
-/** Generate a full bracket state from input data */
-export function generateBracket(division: string, competitors: Competitor[]): BracketState {
-  // 1 competitor: still generate a size-2 bracket (they face a BYE and win)
-  const bracketSize = nextPowerOf2(Math.max(competitors.length, 2));
-
-  slotCounter = 0;
-  const { leftSlots, rightSlots } = distributeCompetitors(competitors, bracketSize);
-
-  return {
-    division,
-    bracketSize,
-    left: buildSideRounds(leftSlots),
-    right: buildSideRounds(rightSlots),
-  };
+  return { division, bracketSize, rounds };
 }
 
 /** Re-shuffle and regenerate keeping same competitors */
 export function reshuffleBracket(state: BracketState): BracketState {
   const competitors: Competitor[] = [];
-  for (const side of [state.left, state.right]) {
-    for (const match of side[0]) {
-      for (const slot of match) {
-        if (slot.competitor) competitors.push(slot.competitor);
-      }
+  for (const match of state.rounds[0]) {
+    for (const slot of match) {
+      if (slot.competitor) competitors.push(slot.competitor);
     }
   }
   return generateBracket(state.division, competitors);
@@ -147,12 +94,10 @@ export function swapSlots(
   let slotA: BracketSlot | null = null;
   let slotB: BracketSlot | null = null;
 
-  for (const side of [newState.left, newState.right]) {
-    for (const match of side[0]) {
-      for (const slot of match) {
-        if (slot.slotId === slotIdA) slotA = slot;
-        if (slot.slotId === slotIdB) slotB = slot;
-      }
+  for (const match of newState.rounds[0]) {
+    for (const slot of match) {
+      if (slot.slotId === slotIdA) slotA = slot;
+      if (slot.slotId === slotIdB) slotB = slot;
     }
   }
 

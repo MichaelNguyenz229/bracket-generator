@@ -9,11 +9,12 @@ export default function App() {
   const [selectedIdx, setSelectedIdx] = useState(0);
   const [bracket, setBracket] = useState<BracketState | null>(null);
   const [backgroundUrl, setBackgroundUrl] = useState<string | null>(null);
+  const [logoUrl, setLogoUrl] = useState<string | null>(null);
+  const [tournamentTitle, setTournamentTitle] = useState('2025 AAU NATIONAL QUALIFIER');
 
   function handleLoad(divs: DivisionData[]) {
     setDivisions(divs);
     setSelectedIdx(0);
-    // Auto-generate bracket for the first division
     const first = divs[0];
     setBracket(generateBracket(first.division, first.competitors));
   }
@@ -35,10 +36,12 @@ export default function App() {
         onLoad={handleLoad}
         onShuffle={handleShuffle}
         onBackgroundChange={setBackgroundUrl}
+        onLogoChange={setLogoUrl}
+        tournamentTitle={tournamentTitle}
+        onTitleChange={setTournamentTitle}
         hasBracket={!!bracket}
       />
 
-      {/* Division selector (only shown for multi-division files) */}
       {divisions.length > 1 && (
         <div className="no-print flex items-center gap-3 px-4 py-2 bg-slate-800 border-b border-slate-700">
           <label className="text-sm text-slate-400">Division:</label>
@@ -62,6 +65,8 @@ export default function App() {
             bracket={bracket}
             onBracketChange={setBracket}
             backgroundUrl={backgroundUrl}
+            logoUrl={logoUrl}
+            tournamentTitle={tournamentTitle}
           />
         </div>
       ) : (

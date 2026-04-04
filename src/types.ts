@@ -10,14 +10,13 @@ export interface BracketSlot {
   competitor: Competitor | null; // null = BYE
 }
 
-/** matches[roundIndex][matchIndex], each match has exactly 2 slots */
-export type SideRounds = BracketSlot[][][];
+/** rounds[roundIndex][matchIndex], each match has exactly 2 slots */
+export type Rounds = BracketSlot[][][];
 
 export interface BracketState {
   division: string;
   bracketSize: number;       // total slots (power of 2)
-  left: SideRounds;          // left side rounds
-  right: SideRounds;         // right side rounds
+  rounds: Rounds;            // single progression left → right
 }
 
 export interface DivisionData {
