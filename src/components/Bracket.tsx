@@ -3,22 +3,22 @@ import { DndContext, DragEndEvent, PointerSensor, useSensor, useSensors } from '
 import type { BracketState } from '../types';
 import { swapSlots } from '../bracketUtils';
 import BracketSVG, { computeLayout } from './BracketSVG';
+import SymmetricalBracketSVG, { computeSymmetricalLayout } from './SymmetricalBracketSVG';
 
 interface Props {
   bracket: BracketState;
   onBracketChange: (b: BracketState) => void;
-  backgroundUrl: string | null;
   logoUrl: string | null;
   tournamentTitle: string;
-  bgScale: number;
-  bgOpacity: number;
+  logoScale: number;
+  layoutType: 'left-to-right' | 'symmetrical';
 }
 
 // Landscape US Letter printable area at 96 DPI (11" x 8.5" minus 0.3" margins)
 const PAGE_W = 10.4 * 96;  // ~998px
 const PAGE_H = 7.9 * 96;   // ~758px
 
-export default function Bracket({ bracket, onBracketChange, backgroundUrl, logoUrl, tournamentTitle, bgScale, bgOpacity }: Props) {
+export default function Bracket({ bracket, onBracketChange, logoUrl, tournamentTitle, logoScale, layoutType }: Props) {
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 5 } })
   );
@@ -29,14 +29,15 @@ export default function Bracket({ bracket, onBracketChange, backgroundUrl, logoU
     onBracketChange(swapSlots(bracket, String(active.id), String(over.id)));
   }
 
-  const layout = computeLayout(bracket.rounds);
+  const isSymmetrical = layoutType === 'symmetrical';
+  const layout = isSymmetrical ? computeSymmetricalLayout(bracket.rounds) : computeLayout(bracket.rounds);
 
   // Estimate total content height: header (~140px) + bracket + 1st place box offset + placement footer (~100px) + padding (~60px)
   const headerEstimate = logoUrl ? 160 : 100;
   const footerEstimate = 120;
   const paddingEstimate = 60;
   const contentH = headerEstimate + layout.totalHeight + footerEstimate + paddingEstimate;
-  const contentW = layout.totalWidth + 200; // bracket + 1st place box + padding
+  const contentW = isSymmetrical ? layout.totalWidth + 100 : layout.totalWidth + 200; // bracket + 1st place box + padding
 
   const printScale = useMemo(() => {
     const scaleY = PAGE_H / contentH;
@@ -56,18 +57,6 @@ export default function Bracket({ bracket, onBracketChange, backgroundUrl, logoU
           '--print-h': `${PAGE_H / printScale}px`,
         } as React.CSSProperties}
       >
-        {/* Background image overlay */}
-        {backgroundUrl && (
-          <div
-            className="bg-overlay absolute inset-0 bg-no-repeat bg-center pointer-events-none"
-            style={{ 
-              backgroundImage: `url(${backgroundUrl})`,
-              backgroundSize: `${bgScale}%`,
-              opacity: bgOpacity,
-            }}
-          />
-        )}
-
         <div className="relative z-10 flex flex-col flex-1 bracket-content">
           {/* Header: Title + Logo */}
           <div className="text-center pt-4 pb-2">
@@ -76,7 +65,7 @@ export default function Bracket({ bracket, onBracketChange, backgroundUrl, logoU
             </h1>
             {logoUrl && (
               <div className="flex justify-center mt-2">
-                <img src={logoUrl} alt="Tournament Logo" className="h-20 object-contain" />
+                <img src={logoUrl} alt="Tournament Logo" className="object-contain" style={{ height: logoScale }} />
               </div>
             )}
           </div>
@@ -92,21 +81,25 @@ export default function Bracket({ bracket, onBracketChange, backgroundUrl, logoU
 
           {/* Bracket + Champion — centered horizontally and vertically in remaining space */}
           <div className="flex-1 flex items-center justify-center px-6">
-            <div className="flex items-start">
+            <div className={`flex ${isSymmetrical ? 'relative' : 'items-start'}`}>
               {/* SVG bracket */}
-              <BracketSVG rounds={bracket.rounds} />
+              {isSymmetrical ? <SymmetricalBracketSVG rounds={bracket.rounds} /> : <BracketSVG rounds={bracket.rounds} />}
 
-              {/* 1ST PLACE box — aligned with final output line */}
+              {/* 1ST PLACE box */}
               <div
-                className="flex-shrink-0"
-                style={{ marginTop: layout.finalMidY - 30 }}
+                className={isSymmetrical ? "absolute" : "flex-shrink-0"}
+                style={isSymmetrical
+                  ? { left: layout.finalMidX, top: layout.finalMidY, transform: 'translate(-50%, -50%)' }
+                  : { marginTop: layout.finalMidY - 30 }
+                }
               >
                 <div
-                  className="flex flex-col items-center"
+                  className="flex flex-col items-center tracking-wide"
                   style={{
                     border: '2px solid #000',
                     minWidth: 160,
                     padding: '8px 16px',
+                    backgroundColor: 'rgba(255,255,255,0.7)',
                   }}
                 >
                   <div className="font-bold text-sm mb-2">1ST PLACE</div>

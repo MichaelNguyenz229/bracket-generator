@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { BracketState, DivisionData } from '../types';
 import { generateBracket, reshuffleBracket } from '../bracketUtils';
+import defaultAauLogo from '../../AAU_logo.png';
 import Bracket from './Bracket';
 import Controls from './Controls';
 
@@ -8,11 +9,10 @@ export default function App() {
   const [divisions, setDivisions] = useState<DivisionData[]>([]);
   const [selectedIdx, setSelectedIdx] = useState(0);
   const [bracket, setBracket] = useState<BracketState | null>(null);
-  const [backgroundUrl, setBackgroundUrl] = useState<string | null>(null);
-  const [logoUrl, setLogoUrl] = useState<string | null>(null);
-  const [bgScale, setBgScale] = useState(50);
-  const [bgOpacity, setBgOpacity] = useState(0.1);
+  const [logoUrl, setLogoUrl] = useState<string | null>(defaultAauLogo);
+  const [logoScale, setLogoScale] = useState(80);
   const [tournamentTitle, setTournamentTitle] = useState('2026 AAU NATIONAL QUALIFIER');
+  const [layoutType, setLayoutType] = useState<'left-to-right' | 'symmetrical'>('symmetrical');
 
   function handleLoad(divs: DivisionData[]) {
     setDivisions(divs);
@@ -37,16 +37,15 @@ export default function App() {
       <Controls
         onLoad={handleLoad}
         onShuffle={handleShuffle}
-        onBackgroundChange={setBackgroundUrl}
         onLogoChange={setLogoUrl}
         tournamentTitle={tournamentTitle}
         onTitleChange={setTournamentTitle}
         hasBracket={!!bracket}
-        hasBackground={!!backgroundUrl}
-        bgScale={bgScale}
-        onBgScaleChange={setBgScale}
-        bgOpacity={bgOpacity}
-        onBgOpacityChange={setBgOpacity}
+        hasLogo={!!logoUrl}
+        logoScale={logoScale}
+        onLogoScaleChange={setLogoScale}
+        layoutType={layoutType}
+        onLayoutTypeChange={setLayoutType}
       />
 
       {divisions.length > 1 && (
@@ -71,11 +70,10 @@ export default function App() {
           <Bracket
             bracket={bracket}
             onBracketChange={setBracket}
-            backgroundUrl={backgroundUrl}
             logoUrl={logoUrl}
             tournamentTitle={tournamentTitle}
-            bgScale={bgScale}
-            bgOpacity={bgOpacity}
+            logoScale={logoScale}
+            layoutType={layoutType}
           />
         </div>
       ) : (

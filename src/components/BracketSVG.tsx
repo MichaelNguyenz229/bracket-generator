@@ -2,7 +2,8 @@ import { useDraggable, useDroppable } from '@dnd-kit/core';
 import type { BracketSlot, Rounds } from '../types';
 
 // ── Layout constants (easy to tune) ──
-const SLOT_W = 185;       // width of each name slot
+const SLOT_W_R0 = 250;    // width of outer name slots (expanded for long names)
+const SLOT_W_INNER = 140; // width of internal slots
 const SLOT_H = 38;        // height of each name slot
 const MATCH_GAP = 6;      // vertical gap between two slots in a match
 const MATCH_SPACING = 20; // vertical space between matches in round 0
@@ -24,7 +25,14 @@ interface Props {
 function computeLayout(rounds: Rounds) {
   const numR0 = rounds[0].length;
   const totalHeight = numR0 * MATCH_H + (numR0 - 1) * MATCH_SPACING;
-  const totalWidth = rounds.length * SLOT_W + rounds.length * ROUND_GAP;
+
+  const getSlotW = (r: number) => r === 0 ? SLOT_W_R0 : SLOT_W_INNER;
+  const getColX = (r: number) => {
+    if (r === 0) return 0;
+    return SLOT_W_R0 + ROUND_GAP + (r - 1) * (SLOT_W_INNER + ROUND_GAP);
+  };
+  
+  const totalWidth = getColX(rounds.length - 1) + getSlotW(rounds.length - 1) + ROUND_GAP;
 
   interface SlotPos {
     x: number;
@@ -32,6 +40,7 @@ function computeLayout(rounds: Rounds) {
     slot: BracketSlot;
     label: 'B' | 'R';
     roundIndex: number;
+    w: number;
   }
 
   const slots: SlotPos[] = [];
@@ -60,7 +69,8 @@ function computeLayout(rounds: Rounds) {
 
   // Build slots and lines for each round
   for (let r = 0; r < rounds.length; r++) {
-    const roundX = r * (SLOT_W + ROUND_GAP);
+    const roundX = getColX(r);
+    const slotW = getSlotW(r);
 
     for (let m = 0; m < rounds[r].length; m++) {
       const center = matchCenters[r][m];
@@ -69,12 +79,12 @@ function computeLayout(rounds: Rounds) {
       const topSlotY = matchTop;
       const bottomSlotY = matchTop + SLOT_H + MATCH_GAP;
 
-      slots.push({ x: roundX, y: topSlotY, slot: rounds[r][m][0], label: 'B', roundIndex: r });
-      slots.push({ x: roundX, y: bottomSlotY, slot: rounds[r][m][1], label: 'R', roundIndex: r });
+      slots.push({ x: roundX, y: topSlotY, slot: rounds[r][m][0], label: 'B', roundIndex: r, w: slotW });
+      slots.push({ x: roundX, y: bottomSlotY, slot: rounds[r][m][1], label: 'R', roundIndex: r, w: slotW });
 
       // Underline for each slot (drawn as SVG so it connects to everything else)
       const lineStartX = roundX + LABEL_W;  // after the B/R label
-      const lineEndX = roundX + SLOT_W;
+      const lineEndX = roundX + slotW;
       const topLineY = topSlotY + SLOT_H;
       const bottomLineY = bottomSlotY + SLOT_H;
 
@@ -104,7 +114,7 @@ function computeLayout(rounds: Rounds) {
           ? nextMatchTop + SLOT_H
           : nextMatchTop + SLOT_H + MATCH_GAP + SLOT_H;
 
-        const nextRoundStartX = (r + 1) * (SLOT_W + ROUND_GAP);
+        const nextRoundStartX = getColX(r + 1);
         const verticalX = connectorX + 10;
         const nextLineStartX = nextRoundStartX + LABEL_W;
 
@@ -126,11 +136,11 @@ function computeLayout(rounds: Rounds) {
   const finalTopY = lastTop + SLOT_H;
   const finalBottomY = lastTop + SLOT_H + MATCH_GAP + SLOT_H;
   const finalMidY = (finalTopY + finalBottomY) / 2;
-  const finalSlotEnd = lastR * (SLOT_W + ROUND_GAP) + SLOT_W;
+  const finalSlotEnd = getColX(lastR) + getSlotW(lastR);
   const finalConnX = finalSlotEnd + ROUND_GAP / 2;
   lines.push({ x1: finalConnX, y1: finalMidY, x2: totalWidth, y2: finalMidY });
 
-  return { slots, lines, totalWidth, totalHeight, finalMidY };
+  return { slots, lines, totalWidth, totalHeight, finalMidY, finalMidX: 0 };
 }
 
 export default function BracketSVG({ rounds }: Props) {
@@ -165,13 +175,14 @@ export default function BracketSVG({ rounds }: Props) {
           slot={s.slot}
           label={s.label}
           roundIndex={s.roundIndex}
+          w={s.w}
         />
       ))}
     </div>
   );
 }
 
-export { computeLayout, SLOT_W, SLOT_H, MATCH_GAP, ROUND_GAP, MATCH_H, LABEL_W };
+export { computeLayout, MATCH_GAP, ROUND_GAP, MATCH_H, LABEL_W };
 
 // ── Slot element with drag-and-drop ──
 
@@ -181,9 +192,10 @@ interface SlotProps {
   slot: BracketSlot;
   label: 'B' | 'R';
   roundIndex: number;
+  w: number;
 }
 
-function SlotElement({ x, y, slot, label, roundIndex }: SlotProps) {
+function SlotElement({ x, y, slot, label, roundIndex, w }: SlotProps) {
   const isFirstRound = roundIndex === 0;
   const { competitor } = slot;
 
@@ -214,7 +226,7 @@ function SlotElement({ x, y, slot, label, roundIndex }: SlotProps) {
         position: 'absolute',
         left: x,
         top: y,
-        width: SLOT_W,
+        width: w,
         height: SLOT_H,
         cursor: isFirstRound && competitor ? 'grab' : 'default',
       }}

@@ -1,0 +1,868 @@
+[
+  {
+    "division": "Tiger - Male Under 33 (Over 28 kg & not exceeding 33 kg) Black Belt",
+    "competitors": [
+      {
+        "id": "1",
+        "name": "Jayden Patino",
+        "school": "TKS Martial Arts - Brea",
+        "photoUrl": ""
+      }
+    ]
+  },
+  {
+    "division": "Ultra (33-45) - Male Under 80 (Over 68 kg & not exceeding 80 kg) Black Belt",
+    "competitors": [
+      {
+        "id": "1",
+        "name": "Daniel Chavez Jr",
+        "school": "Twin Tigers - Team Journey",
+        "photoUrl": ""
+      }
+    ]
+  },
+  {
+    "division": "World Class Cadets - Female Under 29 (Not exceeding 29 kg) Black Belt",
+    "competitors": [
+      {
+        "id": "1",
+        "name": "Ivanna Marquez Zazueta",
+        "school": "MDK - El Centro",
+        "photoUrl": ""
+      }
+    ]
+  },
+  {
+    "division": "World Class Cadets - Female Under 33 (Over 29 kg & not exceeding 33 kg) Black Belt",
+    "competitors": [
+      {
+        "id": "1",
+        "name": "Jadelynn Li",
+        "school": "YIC Taekwondo",
+        "photoUrl": ""
+      },
+      {
+        "id": "2",
+        "name": "Amelie Valiente",
+        "school": "Villa Taekwondo",
+        "photoUrl": ""
+      }
+    ]
+  },
+  {
+    "division": "World Class Cadets - Female Under 37 (Over 33 kg & not exceeding 37 kg) Black Belt",
+    "competitors": [
+      {
+        "id": "1",
+        "name": "Alivia Tribble",
+        "school": "Invictus Taekwondo Center Las Vegas",
+        "photoUrl": ""
+      },
+      {
+        "id": "2",
+        "name": "Aisha Patel",
+        "school": "TNT Martial Arts & Fitness",
+        "photoUrl": ""
+      }
+    ]
+  },
+  {
+    "division": "World Class Cadets - Female Under 41 (Over 37 kg & not exceeding 41 kg) Black Belt",
+    "competitors": [
+      {
+        "id": "1",
+        "name": "Stephania Puentes Rios",
+        "school": "Villa Taekwondo",
+        "photoUrl": ""
+      },
+      {
+        "id": "2",
+        "name": "Catherine Leung",
+        "school": "Team Elite USA",
+        "photoUrl": ""
+      },
+      {
+        "id": "3",
+        "name": "Leslie Evangelista Simon",
+        "school": "Villa Taekwondo",
+        "photoUrl": ""
+      }
+    ]
+  },
+  {
+    "division": "World Class Cadets - Female Under 44 (Over 41 kg & not exceeding 44 kg) Black Belt",
+    "competitors": [
+      {
+        "id": "1",
+        "name": "Sophia Ho",
+        "school": "Progression Taekwondo",
+        "photoUrl": ""
+      },
+      {
+        "id": "2",
+        "name": "Madilyn Ventanilla",
+        "school": "Modern Day Knights",
+        "photoUrl": ""
+      },
+      {
+        "id": "3",
+        "name": "Charlize Ramirez",
+        "school": "Olympian TKD Center",
+        "photoUrl": ""
+      },
+      {
+        "id": "4",
+        "name": "Sofia Rodriguez",
+        "school": "Olympian TKD Center",
+        "photoUrl": ""
+      }
+    ]
+  },
+  {
+    "division": "World Class Cadets - Female Under 51 (Over 47 kg & not exceeding 51 kg) Black Belt",
+    "competitors": [
+      {
+        "id": "1",
+        "name": "Rory ODea",
+        "school": "Top Stars Martial Arts",
+        "photoUrl": ""
+      },
+      {
+        "id": "2",
+        "name": "AUDREY AHN",
+        "school": "TKS Martial Arts - Brea",
+        "photoUrl": ""
+      },
+      {
+        "id": "3",
+        "name": "Summer Aeryn Cabrera",
+        "school": "Modern Day Knights",
+        "photoUrl": ""
+      }
+    ]
+  },
+  {
+    "division": "World Class Cadets - Female Under 55 (Over 51 kg & not exceeding 55 kg) Black Belt",
+    "competitors": [
+      {
+        "id": "1",
+        "name": "Nika Payandeh",
+        "school": "Bibak Taekwondo Academy",
+        "photoUrl": ""
+      },
+      {
+        "id": "2",
+        "name": "Makayla Chan",
+        "school": "Team Elite USA",
+        "photoUrl": ""
+      }
+    ]
+  },
+  {
+    "division": "World Class Cadets - Male Over 65 (Over 65 kg) Black Belt",
+    "competitors": [
+      {
+        "id": "1",
+        "name": "Jason Reeves",
+        "school": "Modern Day Knights",
+        "photoUrl": ""
+      }
+    ]
+  },
+  {
+    "division": "World Class Cadets - Male Under 33 (Not exceeding 33 kg) Black Belt",
+    "competitors": [
+      {
+        "id": "1",
+        "name": "Ace Sablan",
+        "school": "Invictus Taekwondo Center Las Vegas",
+        "photoUrl": ""
+      },
+      {
+        "id": "2",
+        "name": "Edgar Ng",
+        "school": "Exceed Martial Arts",
+        "photoUrl": ""
+      },
+      {
+        "id": "3",
+        "name": "Jesus Guillermo Noel Garcia",
+        "school": "MDK - El Centro",
+        "photoUrl": ""
+      },
+      {
+        "id": "4",
+        "name": "Matthew Paniagua",
+        "school": "Villa Taekwondo",
+        "photoUrl": ""
+      }
+    ]
+  },
+  {
+    "division": "World Class Cadets - Male Under 37 (Over 33 kg & not exceeding 37kg) Black Belt",
+    "competitors": [
+      {
+        "id": "1",
+        "name": "Kian Bagheri",
+        "school": "Invictus Taekwondo Center Las Vegas",
+        "photoUrl": ""
+      },
+      {
+        "id": "2",
+        "name": "Cameron Zhao",
+        "school": "Peak Performance",
+        "photoUrl": ""
+      },
+      {
+        "id": "3",
+        "name": "Ishaan Gupta",
+        "school": "Modern Day Knights",
+        "photoUrl": ""
+      },
+      {
+        "id": "4",
+        "name": "Vihaan Mehta",
+        "school": "Exceed Martial Arts",
+        "photoUrl": ""
+      },
+      {
+        "id": "5",
+        "name": "Evan Hsu",
+        "school": "Top Stars Martial Arts",
+        "photoUrl": ""
+      },
+      {
+        "id": "6",
+        "name": "Ronan Magnus Keean Macatangay-Atienza",
+        "school": "Modern Day Knights",
+        "photoUrl": ""
+      }
+    ]
+  },
+  {
+    "division": "World Class Cadets - Male Under 41 (Over 37 kg & not exceeding 41 kg) Black Belt",
+    "competitors": [
+      {
+        "id": "1",
+        "name": "Julean Arbona",
+        "school": "Yusan Taekwondo Academy",
+        "photoUrl": ""
+      },
+      {
+        "id": "2",
+        "name": "Brandon KO",
+        "school": "TKS Martial Arts - Brea",
+        "photoUrl": ""
+      }
+    ]
+  },
+  {
+    "division": "World Class Cadets - Male Under 45 (Over 41 kg & not exceeding 45 kg) Black Belt",
+    "competitors": [
+      {
+        "id": "1",
+        "name": "Gabriel Kim",
+        "school": "TNT Martial Arts & Fitness",
+        "photoUrl": ""
+      },
+      {
+        "id": "2",
+        "name": "Preston Munguia",
+        "school": "Villa Taekwondo",
+        "photoUrl": ""
+      }
+    ]
+  },
+  {
+    "division": "World Class Cadets - Male Under 49 (Over 45 kg & not exceeding 49 kg) Black Belt",
+    "competitors": [
+      {
+        "id": "1",
+        "name": "Stan Aleksandrov",
+        "school": "Modern Day Knights",
+        "photoUrl": ""
+      },
+      {
+        "id": "2",
+        "name": "Kolton Kim",
+        "school": "TKS Martial Arts - Brea",
+        "photoUrl": ""
+      },
+      {
+        "id": "3",
+        "name": "Arian keshmiri",
+        "school": "Bibak Taekwondo Academy",
+        "photoUrl": ""
+      },
+      {
+        "id": "4",
+        "name": "Andrew Cervantes",
+        "school": "Villa Taekwondo",
+        "photoUrl": ""
+      },
+      {
+        "id": "5",
+        "name": "Ryan khoshbakht",
+        "school": "Bibak Taekwondo Academy",
+        "photoUrl": ""
+      }
+    ]
+  },
+  {
+    "division": "World Class Cadets - Male Under 53 (Over 49 kg & not exceeding 53kg) Black Belt",
+    "competitors": [
+      {
+        "id": "1",
+        "name": "COLIN KIM",
+        "school": "TKS Martial Arts - Brea",
+        "photoUrl": ""
+      },
+      {
+        "id": "2",
+        "name": "Aidan Kim",
+        "school": "TKS Martial Arts - Brea",
+        "photoUrl": ""
+      },
+      {
+        "id": "3",
+        "name": "Nathan Lui",
+        "school": "Modern Day Knights",
+        "photoUrl": ""
+      }
+    ]
+  },
+  {
+    "division": "World Class Cadets - Male Under 57 (Over 53 kg & not exceeding 57 kg) Black Belt",
+    "competitors": [
+      {
+        "id": "1",
+        "name": "Cameron Shiu",
+        "school": "Modern Day Knights",
+        "photoUrl": ""
+      }
+    ]
+  },
+  {
+    "division": "World Class Juniors - Female Feather (Over 46 kg not exceeding 49 kg) Black Belt",
+    "competitors": [
+      {
+        "id": "1",
+        "name": "Iris Ma",
+        "school": "Modern Day Knights",
+        "photoUrl": ""
+      },
+      {
+        "id": "2",
+        "name": "Qiuyin Chen",
+        "school": "Bibak Taekwondo Academy",
+        "photoUrl": ""
+      }
+    ]
+  },
+  {
+    "division": "World Class Juniors - Female Fin (Not exceeding 42 kg) Black Belt",
+    "competitors": [
+      {
+        "id": "1",
+        "name": "Brisa Espinoza",
+        "school": "Villa Taekwondo",
+        "photoUrl": ""
+      }
+    ]
+  },
+  {
+    "division": "World Class Juniors - Female Heavy (Over 68 kg) Black Belt",
+    "competitors": [
+      {
+        "id": "1",
+        "name": "Aleksandra Kuzmenkova",
+        "school": "TNT Martial Arts & Fitness",
+        "photoUrl": ""
+      }
+    ]
+  },
+  {
+    "division": "World Class Juniors - Female Light (Over 49 kg not exceeding 52 kg) Black Belt",
+    "competitors": [
+      {
+        "id": "1",
+        "name": "Sophia Ramirez",
+        "school": "Olympian TKD Center",
+        "photoUrl": ""
+      },
+      {
+        "id": "2",
+        "name": "Jessica Ding",
+        "school": "Modern Day Knights",
+        "photoUrl": ""
+      }
+    ]
+  },
+  {
+    "division": "World Class Juniors - Female Light Middle (Over 55 kg not exceeding 59 kg) Black Belt",
+    "competitors": [
+      {
+        "id": "1",
+        "name": "Margaret Leung",
+        "school": "Team Elite USA",
+        "photoUrl": ""
+      }
+    ]
+  },
+  {
+    "division": "World Class Juniors - Female Middle (Over 59 kg not exceeding 63 kg) Black Belt",
+    "competitors": [
+      {
+        "id": "1",
+        "name": "Ananya Mehts",
+        "school": "Exceed Martial Arts",
+        "photoUrl": ""
+      }
+    ]
+  },
+  {
+    "division": "World Class Juniors - Female Welter (Over 52 kg not exceeding 55 kg) Black Belt",
+    "competitors": [
+      {
+        "id": "1",
+        "name": "Amelia Doan",
+        "school": "Modern Day Knights",
+        "photoUrl": ""
+      }
+    ]
+  },
+  {
+    "division": "World Class Juniors - Male Bantam (Over 48 kg not exceeding 51 kg) Black Belt",
+    "competitors": [
+      {
+        "id": "1",
+        "name": "Crosby Son",
+        "school": "TKS Martial Arts - Brea",
+        "photoUrl": ""
+      }
+    ]
+  },
+  {
+    "division": "World Class Juniors - Male Feather (Over 51 kg not exceeding 55 kg) Black Belt",
+    "competitors": [
+      {
+        "id": "1",
+        "name": "Owen Zhang",
+        "school": "Modern Day Knights",
+        "photoUrl": ""
+      },
+      {
+        "id": "2",
+        "name": "Benjamin Bendigo",
+        "school": "TNT Martial Arts & Fitness",
+        "photoUrl": ""
+      }
+    ]
+  },
+  {
+    "division": "World Class Juniors - Male Fin (Not exceeding 45 kg) Black Belt",
+    "competitors": [
+      {
+        "id": "1",
+        "name": "Joshua Damasco",
+        "school": "Villa Taekwondo",
+        "photoUrl": ""
+      }
+    ]
+  },
+  {
+    "division": "World Class Juniors - Male Fly (Over 45 kg not exceeding 48 kg) Black Belt",
+    "competitors": [
+      {
+        "id": "1",
+        "name": "Yusei Kyle Kapojos",
+        "school": "Villa Taekwondo",
+        "photoUrl": ""
+      },
+      {
+        "id": "2",
+        "name": "Justin Ding",
+        "school": "Modern Day Knights",
+        "photoUrl": ""
+      },
+      {
+        "id": "3",
+        "name": "Joshua Lepe",
+        "school": "Villa Taekwondo",
+        "photoUrl": ""
+      }
+    ]
+  },
+  {
+    "division": "World Class Juniors - Male Light (Over 55 kg not exceeding 59 kg) Black Belt",
+    "competitors": [
+      {
+        "id": "1",
+        "name": "Shawn Kang",
+        "school": "Invictus Taekwondo Center Las Vegas",
+        "photoUrl": ""
+      },
+      {
+        "id": "2",
+        "name": "Siddhartha Sharma",
+        "school": "Exceed Martial Arts",
+        "photoUrl": ""
+      },
+      {
+        "id": "3",
+        "name": "Skyler Leu",
+        "school": "Invictus Taekwondo Center Las Vegas",
+        "photoUrl": ""
+      },
+      {
+        "id": "4",
+        "name": "Ian Li",
+        "school": "YIC Taekwondo",
+        "photoUrl": ""
+      },
+      {
+        "id": "5",
+        "name": "Pau Tapales",
+        "school": "Team Elite USA",
+        "photoUrl": ""
+      },
+      {
+        "id": "6",
+        "name": "Mher Mkrtchyan",
+        "school": "Villa Taekwondo",
+        "photoUrl": ""
+      },
+      {
+        "id": "7",
+        "name": "Lonnie Shin",
+        "school": "TKS Martial Arts - Brea",
+        "photoUrl": ""
+      }
+    ]
+  },
+  {
+    "division": "World Class Juniors - Male Light Middle (Over 63 kg not exceeding 68 kg) Black Belt",
+    "competitors": [
+      {
+        "id": "1",
+        "name": "Talpai Talpai",
+        "school": "Tae Ryong - Thousand Oaks",
+        "photoUrl": ""
+      },
+      {
+        "id": "2",
+        "name": "Lucas Chen",
+        "school": "TNT Martial Arts & Fitness",
+        "photoUrl": ""
+      },
+      {
+        "id": "3",
+        "name": "Marc-Daniel Jumanan",
+        "school": "King's Combat Sports",
+        "photoUrl": ""
+      },
+      {
+        "id": "4",
+        "name": "William Triest",
+        "school": "Modern Day Knights",
+        "photoUrl": ""
+      }
+    ]
+  },
+  {
+    "division": "World Class Juniors - Male Middle (Over 68 kg not exceeding 73 kg) Black Belt",
+    "competitors": [
+      {
+        "id": "1",
+        "name": "Drake Wanstreet",
+        "school": "Invictus Taekwondo Center Las Vegas",
+        "photoUrl": ""
+      },
+      {
+        "id": "2",
+        "name": "Ian Zahid Guzman Ojeda",
+        "school": "MDK - El Centro",
+        "photoUrl": ""
+      }
+    ]
+  },
+  {
+    "division": "World Class Juniors - Male Welter (Over 59 kg not exceeding 63 kg) Black Belt",
+    "competitors": [
+      {
+        "id": "1",
+        "name": "Arya Maddireddy",
+        "school": "Modern Day Knights",
+        "photoUrl": ""
+      },
+      {
+        "id": "2",
+        "name": "Lonnie Shin",
+        "school": "TKS Martial Arts - Brea",
+        "photoUrl": ""
+      },
+      {
+        "id": "3",
+        "name": "Ethan Lui",
+        "school": "Modern Day Knights",
+        "photoUrl": ""
+      },
+      {
+        "id": "4",
+        "name": "Seth Lin",
+        "school": "Modern Day Knights",
+        "photoUrl": ""
+      },
+      {
+        "id": "5",
+        "name": "Nawaldeep Bomrah",
+        "school": "Modern Day Knights",
+        "photoUrl": ""
+      },
+      {
+        "id": "6",
+        "name": "dylan Solorio",
+        "school": "Tigers",
+        "photoUrl": ""
+      },
+      {
+        "id": "7",
+        "name": "Aidan Shiu",
+        "school": "Modern Day Knights",
+        "photoUrl": ""
+      }
+    ]
+  },
+  {
+    "division": "World Class Seniors - Female Bantam (Over 49 kg not exceeding 53 kg) Black Belt",
+    "competitors": [
+      {
+        "id": "1",
+        "name": "Amanda Gonzalez",
+        "school": "MDK - El Centro",
+        "photoUrl": ""
+      },
+      {
+        "id": "2",
+        "name": "Soraya Villa",
+        "school": "Villa Taekwondo",
+        "photoUrl": ""
+      }
+    ]
+  },
+  {
+    "division": "World Class Seniors - Female Fly (Over 46 kg not exceeding 49 kg) Black Belt",
+    "competitors": [
+      {
+        "id": "1",
+        "name": "KAYLEE KIM",
+        "school": "Team Elite USA",
+        "photoUrl": ""
+      },
+      {
+        "id": "2",
+        "name": "Lyzbeth Escobar",
+        "school": "Two Dragons Taekwondo - Las Vegas",
+        "photoUrl": ""
+      }
+    ]
+  },
+  {
+    "division": "World Class Seniors - Female Middle (Over 67 kg not exceeding 73 kg) Black Belt",
+    "competitors": [
+      {
+        "id": "1",
+        "name": "Leanna Chan",
+        "school": "Team Elite USA",
+        "photoUrl": ""
+      }
+    ]
+  },
+  {
+    "division": "World Class Seniors - Male Bantam (Over 58 kg not exceeding 63 kg) Black Belt",
+    "competitors": [
+      {
+        "id": "1",
+        "name": "Carlos Alfredo Alatorre",
+        "school": "MDK - El Centro",
+        "photoUrl": ""
+      },
+      {
+        "id": "2",
+        "name": "Sean Hang",
+        "school": "Modern Day Knights",
+        "photoUrl": ""
+      },
+      {
+        "id": "3",
+        "name": "Xavier Stone",
+        "school": "Eagles Taekwondo - Las Vegas",
+        "photoUrl": ""
+      },
+      {
+        "id": "4",
+        "name": "Kamronbek Mansurov",
+        "school": "Lion's Taekwondo Academy",
+        "photoUrl": ""
+      }
+    ]
+  },
+  {
+    "division": "World Class Seniors - Male Feather (Over 63 kg not exceeding 68 kg) Black Belt",
+    "competitors": [
+      {
+        "id": "1",
+        "name": "Kylan Kim",
+        "school": "TKS Martial Arts - Brea",
+        "photoUrl": ""
+      }
+    ]
+  },
+  {
+    "division": "World Class Seniors - Male Fin (Not exceeding 54 kg) Black Belt",
+    "competitors": [
+      {
+        "id": "1",
+        "name": "Michael Ignacio",
+        "school": "Tornado Sport Club",
+        "photoUrl": ""
+      }
+    ]
+  },
+  {
+    "division": "World Class Seniors - Male Fly (Over 54 kg not exceeding 58 kg) Black Belt",
+    "competitors": [
+      {
+        "id": "1",
+        "name": "Iker Bojorquez",
+        "school": "MDK - El Centro",
+        "photoUrl": ""
+      },
+      {
+        "id": "2",
+        "name": "Aragorn Clemente",
+        "school": "ACTaekwondo",
+        "photoUrl": ""
+      }
+    ]
+  },
+  {
+    "division": "World Class Seniors - Male Light (Over 68 kg not exceeding 74 kg) Black Belt",
+    "competitors": [
+      {
+        "id": "1",
+        "name": "Jackson Oberlin",
+        "school": "My Focus Taekwondo",
+        "photoUrl": ""
+      }
+    ]
+  },
+  {
+    "division": "Youth - Female Under 30 (Not exceeding 30 kg) Black Belt",
+    "competitors": [
+      {
+        "id": "1",
+        "name": "Itzel Rodriguez",
+        "school": "Villa Taekwondo",
+        "photoUrl": ""
+      },
+      {
+        "id": "2",
+        "name": "Kaylyn Leal",
+        "school": "Villa Taekwondo",
+        "photoUrl": ""
+      }
+    ]
+  },
+  {
+    "division": "Youth - Female Under 35 (Over 30 kg & not exceeding 35 kg) Black Belt",
+    "competitors": [
+      {
+        "id": "1",
+        "name": "Helen Ma",
+        "school": "Team Elite USA",
+        "photoUrl": ""
+      }
+    ]
+  },
+  {
+    "division": "Youth - Male Over 40 (Over 40 kg) Black Belt",
+    "competitors": [
+      {
+        "id": "1",
+        "name": "Ryan Bibak asl",
+        "school": "Bibak Taekwondo Academy",
+        "photoUrl": ""
+      }
+    ]
+  },
+  {
+    "division": "Youth - Male Under 30 (Not exceeding 30 kg) Black Belt",
+    "competitors": [
+      {
+        "id": "1",
+        "name": "Dylan Shaw",
+        "school": "Exceed Martial Arts",
+        "photoUrl": ""
+      },
+      {
+        "id": "2",
+        "name": "Ryuu Muhammad",
+        "school": "TNT Martial Arts & Fitness",
+        "photoUrl": ""
+      },
+      {
+        "id": "3",
+        "name": "Raul Alexander Velazquez",
+        "school": "MDK - El Centro",
+        "photoUrl": ""
+      },
+      {
+        "id": "4",
+        "name": "Zachary Tamanaha",
+        "school": "TNT Martial Arts & Fitness",
+        "photoUrl": ""
+      },
+      {
+        "id": "5",
+        "name": "Ian Yoon",
+        "school": "K.S. Choi Taekwondo - Palos Verdes",
+        "photoUrl": ""
+      }
+    ]
+  },
+  {
+    "division": "Youth - Male Under 35 (Over 30 kg & not exceeding 35 kg) Black Belt",
+    "competitors": [
+      {
+        "id": "1",
+        "name": "Nathan Huang",
+        "school": "Progression Taekwondo",
+        "photoUrl": ""
+      },
+      {
+        "id": "2",
+        "name": "Kingston Goh",
+        "school": "K.S. Choi Taekwondo - Palos Verdes",
+        "photoUrl": ""
+      },
+      {
+        "id": "3",
+        "name": "Ashan Patel",
+        "school": "TNT Martial Arts & Fitness",
+        "photoUrl": ""
+      }
+    ]
+  },
+  {
+    "division": "Youth - Male Under 40 (Over 35 kg & not exceeding 40 kg) Black Belt",
+    "competitors": [
+      {
+        "id": "1",
+        "name": "Ryan Feng",
+        "school": "TNT Martial Arts & Fitness",
+        "photoUrl": ""
+      }
+    ]
+  }
+]

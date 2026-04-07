@@ -4,53 +4,24 @@ import type { DivisionData } from '../types';
 interface Props {
   onLoad: (divisions: DivisionData[]) => void;
   onShuffle: () => void;
-  onBackgroundChange: (url: string | null) => void;
   onLogoChange: (url: string | null) => void;
   tournamentTitle: string;
   onTitleChange: (title: string) => void;
   hasBracket: boolean;
-  hasBackground: boolean;
-  bgScale: number;
-  onBgScaleChange: (scale: number) => void;
-  bgOpacity: number;
-  onBgOpacityChange: (opacity: number) => void;
+  hasLogo: boolean;
+  logoScale: number;
+  onLogoScaleChange: (scale: number) => void;
+  layoutType: 'left-to-right' | 'symmetrical';
+  onLayoutTypeChange: (type: 'left-to-right' | 'symmetrical') => void;
 }
 
 export default function Controls({
-  onLoad, onShuffle, onBackgroundChange, onLogoChange,
+  onLoad, onShuffle, onLogoChange,
   tournamentTitle, onTitleChange, hasBracket,
-  hasBackground, bgScale, onBgScaleChange, bgOpacity, onBgOpacityChange
+  hasLogo, logoScale, onLogoScaleChange,
+  layoutType, onLayoutTypeChange
 }: Props) {
-  const fileRef = useRef<HTMLInputElement>(null);
-  const bgRef = useRef<HTMLInputElement>(null);
   const logoRef = useRef<HTMLInputElement>(null);
-
-  function handleJsonUpload(e: React.ChangeEvent<HTMLInputElement>) {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = () => {
-      try {
-        const raw = JSON.parse(reader.result as string);
-        const divisions: DivisionData[] = Array.isArray(raw) ? raw : [raw];
-        for (const d of divisions) {
-          if (!d.division || !Array.isArray(d.competitors)) {
-            alert('Invalid JSON format. Each division needs { division, competitors[] }');
-            return;
-          }
-        }
-        if (divisions.length === 0) {
-          alert('No divisions found in the file.');
-          return;
-        }
-        onLoad(divisions);
-      } catch {
-        alert('Failed to parse JSON file.');
-      }
-    };
-    reader.readAsText(file);
-    e.target.value = '';
-  }
 
   function handleImageUpload(
     e: React.ChangeEvent<HTMLInputElement>,
@@ -60,6 +31,28 @@ export default function Controls({
     if (!file) return;
     setter(URL.createObjectURL(file));
     e.target.value = '';
+  }
+
+  function handlePipelineLoad() {
+    fetch('/pipeline_data.json')
+      .then(res => res.json())
+      .then(raw => {
+        const divisions: DivisionData[] = Array.isArray(raw) ? raw : [raw];
+        for (const d of divisions) {
+          if (!d.division || !Array.isArray(d.competitors)) {
+            alert('Invalid JSON format in pipeline data.');
+            return;
+          }
+        }
+        if (divisions.length === 0) {
+          alert('No divisions found in pipeline data.');
+          return;
+        }
+        onLoad(divisions);
+      })
+      .catch(() => {
+        alert('Could not find pipeline data. Did you click "Sync directly to Bracket Generator" in the Python app first?');
+      });
   }
 
   return (
@@ -75,13 +68,15 @@ export default function Controls({
         className="bg-slate-700 text-white text-sm rounded px-2 py-1 border border-slate-600 w-64"
       />
 
-      <input ref={fileRef} type="file" accept=".json" onChange={handleJsonUpload} className="hidden" />
-      <button
-        onClick={() => fileRef.current?.click()}
-        className="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-sm rounded transition-colors"
-      >
-        Load JSON
-      </button>
+      <div className="flex gap-1 pr-3 mr-1">
+        <button
+          onClick={handlePipelineLoad}
+          className="px-3 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold flex items-center gap-1 text-sm rounded transition-colors shadow-sm"
+          title="Pull data directly from the Python Pipeline"
+        >
+          ⚡ Auto-Load
+        </button>
+      </div>
 
       <button
         onClick={onShuffle}
@@ -99,36 +94,31 @@ export default function Controls({
         Logo
       </button>
 
-      <input ref={bgRef} type="file" accept="image/*" onChange={(e) => handleImageUpload(e, onBackgroundChange)} className="hidden" />
-      <button
-        onClick={() => bgRef.current?.click()}
-        className="px-3 py-1.5 bg-slate-600 hover:bg-slate-700 text-white text-sm rounded transition-colors"
-      >
-        Background
-      </button>
-
-      {hasBackground && (
+      {hasLogo && (
         <div className="flex items-center gap-3 bg-slate-800 px-3 py-1.5 rounded border border-slate-700">
           <label className="text-slate-300 text-xs flex items-center gap-2">
-            Size:
-            <input type="range" min="10" max="150" value={bgScale} onChange={(e) => onBgScaleChange(Number(e.target.value))} className="w-20 accent-slate-400" />
-          </label>
-          <label className="text-slate-300 text-xs flex items-center gap-2">
-            Fade:
-            <input type="range" min="0.02" max="1" step="0.02" value={bgOpacity} onChange={(e) => onBgOpacityChange(Number(e.target.value))} className="w-20 accent-slate-400" />
+            Logo Size:
+            <input type="range" min="20" max="250" value={logoScale} onChange={(e) => onLogoScaleChange(Number(e.target.value))} className="w-20 accent-slate-400" />
           </label>
         </div>
       )}
 
       <button
-        onClick={() => { onBackgroundChange(null); onLogoChange(null); }}
+        onClick={() => { onLogoChange(null); }}
         className="px-3 py-1.5 bg-slate-700 hover:bg-slate-600 text-slate-300 text-sm rounded transition-colors"
       >
-        Clear Images
+        Clear Logo
       </button>
 
-      <div className="ml-auto flex items-center gap-2">
-        <span className="text-[10px] text-slate-500">Enable "Background graphics" in print dialog</span>
+      <div className="ml-auto flex items-center gap-3">
+        <select
+          value={layoutType}
+          onChange={(e) => onLayoutTypeChange(e.target.value as 'left-to-right' | 'symmetrical')}
+          className="bg-slate-700 text-white text-sm rounded px-2 py-1.5 border border-slate-600 outline-none hover:border-slate-500 cursor-pointer"
+        >
+          <option value="symmetrical">Symmetrical Layout</option>
+          <option value="left-to-right">Left-to-Right Layout</option>
+        </select>
         <button
           onClick={() => window.print()}
           disabled={!hasBracket}
