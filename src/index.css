@@ -102,8 +102,28 @@ body {
   outline-offset: -2px;
 }
 
+/* ── Print-all: hidden on screen, shown when printing all divisions ── */
+.print-all-container {
+  display: none;
+}
+
 /* ── Print styles ── */
 @media print {
+  /* When printing all: hide the single-bracket view */
+  .printing-all-hide {
+    display: none !important;
+  }
+
+  /* Show all brackets */
+  .print-all-container {
+    display: block !important;
+  }
+
+  /* Page break between brackets */
+  .print-page-break {
+    page-break-after: always;
+    break-after: page;
+  }
   @page {
     size: landscape;
     margin: 0.3in;

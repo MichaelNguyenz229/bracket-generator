@@ -13,13 +13,17 @@ interface Props {
   onLogoScaleChange: (scale: number) => void;
   layoutType: 'left-to-right' | 'symmetrical';
   onLayoutTypeChange: (type: 'left-to-right' | 'symmetrical') => void;
+  onPrintAll?: () => void;
+  reviewedCount?: number;
+  totalDivisions?: number;
 }
 
 export default function Controls({
   onLoad, onShuffle, onLogoChange,
   tournamentTitle, onTitleChange, hasBracket,
   hasLogo, logoScale, onLogoScaleChange,
-  layoutType, onLayoutTypeChange
+  layoutType, onLayoutTypeChange,
+  onPrintAll, reviewedCount, totalDivisions
 }: Props) {
   const logoRef = useRef<HTMLInputElement>(null);
 
@@ -126,6 +130,15 @@ export default function Controls({
         >
           Print
         </button>
+        {onPrintAll && (
+          <button
+            onClick={onPrintAll}
+            className="px-3 py-1.5 bg-green-800 hover:bg-green-900 text-white text-sm rounded transition-colors whitespace-nowrap"
+            title={`Print all ${totalDivisions} divisions`}
+          >
+            Print All {reviewedCount !== undefined && totalDivisions ? `(${reviewedCount}/${totalDivisions})` : ''}
+          </button>
+        )}
       </div>
     </div>
   );
